@@ -4,214 +4,413 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>e-LMS — Selamat Datang</title>
+    <title>e-LMS Kulino — Platform Pembelajaran Online</title>
+    <!-- Google Font Plus Jakarta Sans -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
     <style>
         :root {
-            --bg: #0f1724;
-            --card: #0b1220;
-            --accent: #06b6d4;
-            --muted: #94a3b8;
-            --glass: rgba(255, 255, 255, 0.04);
+            /* Konsep Warna Dominan Biru Tua Kampus (Kulino UDINUS Style) */
+            --navy-deepest: #001226;
+            --navy-deep: #001a36;
+            --navy-main: #002752;
+            --navy-light: #003670;
+            --navy-card: #002248;
+            --gold: #f59e0b;
+            --gold-light: #fbbf24;
+            --blue-sky: #38bdf8;
+            --blue-cyan: #22d3ee;
+            --text-white: #ffffff;
+            --text-muted: #cbd5e1;
+            --text-dim: #94a3b8;
+            --glass-bg: rgba(255, 255, 255, 0.05);
+            --glass-border: rgba(255, 255, 255, 0.1);
         }
 
         * {
-            box-sizing: border-box
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
         }
 
         body {
-            margin: 0;
-            font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
-            background: linear-gradient(180deg, #0f1724 0%, #071827 60%);
-            color: #e6eef6;
+            font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+            background: radial-gradient(circle at 50% 25%, #0d3866 0%, #062244 100%);
+            color: var(--text-white);
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
             min-height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 32px;
+            padding: 32px 20px;
         }
 
         .container {
             width: 100%;
-            max-width: 1100px;
-            background: linear-gradient(180deg, rgba(255, 255, 255, 0.02), rgba(255, 255, 255, 0.01));
-            border-radius: 14px;
-            box-shadow: 0 10px 30px rgba(2, 6, 23, 0.6);
+            max-width: 1140px;
+            background: linear-gradient(180deg, var(--navy-main) 0%, var(--navy-deep) 100%);
+            border-radius: 18px;
+            box-shadow: 0 25px 70px rgba(0, 10, 25, 0.7);
+            border: 1px solid var(--glass-border);
+            border-top: 4px solid var(--gold);
             overflow: hidden;
             display: grid;
-            grid-template-columns: 1fr 380px;
+            grid-template-columns: 1fr 360px;
             gap: 0;
         }
 
-        /* left */
+        /* Bagian Kiri */
         .hero {
-            padding: 48px;
+            padding: 44px 44px;
         }
 
-        .logo {
-            display: inline-block;
-            padding: 8px 12px;
-            border-radius: 10px;
-            background: var(--glass);
+        .top-row {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+
+        .logo-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 6px 14px;
+            border-radius: 8px;
+            background: rgba(245, 158, 11, 0.15);
+            border: 1px solid rgba(245, 158, 11, 0.4);
+            font-weight: 800;
+            font-size: 13.5px;
+            color: var(--gold-light);
+            letter-spacing: 0.5px;
+        }
+
+        .student-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 6px 14px;
+            border-radius: 20px;
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            font-size: 12px;
             font-weight: 600;
-            color: var(--accent);
-            margin-bottom: 18px;
+            color: var(--text-muted);
         }
 
         h1 {
-            margin: 0 0 12px;
-            font-size: 28px;
-            line-height: 1.05
+            margin: 0 0 14px;
+            font-size: 27px;
+            line-height: 1.25;
+            font-weight: 800;
+            color: #ffffff;
+            letter-spacing: -0.4px;
         }
 
         p.lead {
-            margin: 0 0 22px;
-            color: var(--muted);
-            max-width: 60ch
-        }
-
-        .features {
-            display: flex;
-            gap: 12px;
-            flex-wrap: wrap;
-            margin-top: 22px
-        }
-
-        .chip {
-            background: rgba(255, 255, 255, 0.02);
-            padding: 10px 12px;
-            border-radius: 10px;
+            margin: 0 0 24px;
+            color: var(--text-muted);
             font-size: 14px;
-            color: #cfeefc
+            line-height: 1.6;
+            max-width: 62ch;
         }
 
-        .actions {
-            margin-top: 28px;
+        .section-label {
+            font-size: 11px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            color: var(--gold-light);
+            margin-bottom: 10px;
             display: flex;
-            gap: 12px
+            align-items: center;
+            gap: 6px;
+        }
+
+        /* Grid 4 Kolom Sejajar Sempurna untuk Baris Atas dan Baris Bawah */
+        .actions-row {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+            margin-bottom: 22px;
+            width: 100%;
         }
 
         .btn {
-            padding: 12px 16px;
+            width: 100%;
+            height: 48px;
+            padding: 0 6px;
             border-radius: 10px;
-            font-weight: 600;
+            font-weight: 700;
+            font-size: 12.5px;
             cursor: pointer;
             border: 0;
             display: inline-flex;
             align-items: center;
-            gap: 8px;
+            justify-content: center;
+            gap: 6px;
+            text-decoration: none;
+            transition: all 0.2s ease;
+            white-space: nowrap;
+            box-sizing: border-box;
         }
 
-        .btn-primary {
-            background: linear-gradient(90deg, var(--accent), #7dd3fc);
-            color: #042027;
-            box-shadow: 0 6px 18px rgba(6, 182, 212, 0.12)
+        /* 1. Tombol Gold (Buka Admin) */
+        .btn-gold {
+            background: linear-gradient(135deg, var(--gold), #d97706);
+            color: var(--navy-deepest);
+            box-shadow: 0 4px 14px rgba(245, 158, 11, 0.35);
         }
 
-        .btn-ghost {
-            background: transparent;
-            color: var(--muted);
-            border: 1px solid rgba(255, 255, 255, 0.04)
+        .btn-gold:hover {
+            background: linear-gradient(135deg, var(--gold-light), var(--gold));
+            color: #000000;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 18px rgba(245, 158, 11, 0.45);
         }
 
-        /* right card */
+        /* 2. Tombol Putih Solid */
+        .btn-white {
+            background: #ffffff;
+            color: var(--navy-main);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn-white:hover {
+            background: #f1f5f9;
+            color: var(--navy-deepest);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(255, 255, 255, 0.25);
+        }
+
+        /* 3. Tombol Cyan (Biru Langit) */
+        .btn-cyan {
+            background: linear-gradient(90deg, #0284c7, #0ea5e9);
+            color: #ffffff;
+            box-shadow: 0 4px 14px rgba(14, 165, 233, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+        }
+
+        .btn-cyan:hover {
+            background: linear-gradient(90deg, #0369a1, #0284c7);
+            color: #ffffff;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 18px rgba(14, 165, 233, 0.4);
+        }
+
+        .tips {
+            margin-top: 6px;
+            color: var(--text-dim);
+            font-size: 13px;
+            line-height: 1.5;
+        }
+
+        .tips strong {
+            color: var(--gold-light);
+        }
+
+        .tips em {
+            color: #ffffff;
+            font-style: normal;
+            font-weight: 600;
+        }
+
+        /* Bagian Kanan (Sekilas Statistik Dominan Biru Tua) */
         .right {
-            padding: 24px;
-            background: linear-gradient(180deg, rgba(255, 255, 255, 0.01), rgba(255, 255, 255, 0.02));
-            border-left: 1px solid rgba(255, 255, 255, 0.03);
+            padding: 40px 30px;
+            background: linear-gradient(180deg, var(--navy-card) 0%, var(--navy-deep) 100%);
+            border-left: 1px solid var(--glass-border);
             display: flex;
             flex-direction: column;
-            gap: 18px;
+            gap: 16px;
             justify-content: center;
+        }
+
+        .right-header {
+            font-size: 12px;
+            color: var(--gold-light);
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            margin-bottom: 4px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
         }
 
         .stat {
             display: flex;
             align-items: center;
-            gap: 12px;
-            padding: 14px;
-            background: rgba(255, 255, 255, 0.02);
-            border-radius: 10px;
+            gap: 16px;
+            padding: 16px 18px;
+            background: rgba(255, 255, 255, 0.035);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-left: 4px solid var(--gold);
+            border-radius: 12px;
+            transition: all 0.2s ease;
+        }
+
+        .stat:hover {
+            background: rgba(255, 255, 255, 0.07);
+            border-color: rgba(255, 255, 255, 0.15);
+            transform: translateX(4px);
+        }
+
+        .stat-icon {
+            font-size: 24px;
         }
 
         .stat .num {
-            font-size: 20px;
-            font-weight: 700;
-            color: var(--accent)
+            font-size: 24px;
+            font-weight: 800;
+            color: #ffffff;
+            line-height: 1.1;
         }
 
         .stat small {
             display: block;
-            color: var(--muted);
-            font-size: 13px
+            color: var(--text-muted);
+            font-size: 12.5px;
+            font-weight: 600;
+            margin-top: 4px;
         }
 
         footer {
-            padding: 14px;
+            margin-top: 14px;
             text-align: center;
-            color: var(--muted);
-            font-size: 13px
+            color: var(--text-dim);
+            font-size: 12px;
+            line-height: 1.5;
         }
 
-        @media (max-width: 900px) {
+        @media (max-width: 960px) {
             .container {
                 grid-template-columns: 1fr;
-                padding: 0
             }
 
             .hero {
-                padding: 28px
+                padding: 32px 24px;
+            }
+
+            .actions-row {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .right {
+                border-left: 0;
+                border-top: 1px solid var(--glass-border);
+                padding: 28px 24px;
             }
         }
     </style>
 </head>
 
 <body>
-    <div class="container" role="main" aria-label="e-LMS Welcome">
+    <div class="container" role="main" aria-label="e-LMS Kulino Welcome">
+        <!-- Kolom Kiri -->
         <div class="hero">
-            <div class="logo">e-LMS</div>
+            <div class="top-row">
+                <div class="logo-badge">
+                    <span> </span> e-LMS
+                </div>
+
+            </div>
+
             <h1>Selamat Datang di e-LMS — Platform Pembelajaran Online</h1>
-            <p class="lead">Kelola mata kuliah, unggah konten, dan terima komentar siswa dengan mudah. Dashboard yang
-                ringan, aman, dan siap dipakai di lingkungan pendidikan.</p>
-            <div class="features" aria-hidden="false">
-                <div class="chip">Manajemen Kursus</div>
-                <div class="chip">Konten Video & File</div>
-                <div class="chip">Komentar & Diskusi</div>
-                <div class="chip" onclick="location.href='/statistik-pengguna/'" style="cursor:pointer">Statistik Pengguna</div>
+            <p class="lead">
+                Kelola mata kuliah, unggah konten, dan terima komentar siswa dengan mudah. Dashboard yang ringan, aman,
+                dan siap dipakai di lingkungan pendidikan kampus.
+            </p>
+
+            <!-- Baris Atas: 4 Tombol Putih Sejajar Sama Persis Ukurannya dengan Bawah -->
+            <div class="section-label"> MODUL & LAYANAN PEMBELAJARAN</div>
+            <div class="actions-row">
+                <!-- 1. Manajemen Kursus -->
+                <button type="button" class="btn btn-white" title="Manajemen Kursus">
+                    Manajemen Kursus
+                </button>
+                <!-- 2. Konten Video & File -->
+                <button type="button" class="btn btn-white" title="Konten Video & File">
+                    Konten Video & File
+                </button>
+                <!-- 3. Komentar & Diskusi -->
+                <button type="button" class="btn btn-white" title="Komentar & Diskusi">
+                    Komentar & Diskusi
+                </button>
+                <!-- 4. Statistik Pengguna -->
+                <button class="btn btn-white" onclick="location.href='/statistik-pengguna/'" title="Statistik Pengguna">
+                    Statistik Pengguna
+                </button>
             </div>
-            <div class="actions">
-                <button class="btn btn-primary" onclick="location.href='/admin/'">Buka Admin</button>
-                <button class="btn btn-ghost" onclick="location.href='/statistik/'">Lihat Statistik</button>
+
+            <!-- Baris Bawah: 4 Tombol Akses Halaman & Kontrol Utama -->
+            <div class="section-label"> AKSES HALAMAN & KONTROL UTAMA</div>
+            <div class="actions-row">
+                <!-- 5. Buka Admin -->
+                <button class="btn btn-white" onclick="location.href='/admin/'" title="Buka Admin">
+                    Buka Admin
+                </button>
+                <!-- 6. Lihat Statistik -->
+                <button class="btn btn-white" onclick="location.href='/statistik/'" title="Lihat Statistik Kursus">
+                    Lihat Statistik
+                </button>
+                <!-- 7. Lihat Statistik User -->
+                <button class="btn btn-white" onclick="location.href='/statistik-pengguna/'"
+                    title="Lihat Statistik User">
+                    Lihat Statistik User
+                </button>
+                <!-- 8. Profiling -->
+                <button type="button" class="btn btn-white" title="Profiling Pengguna">
+                    Profiling
+                </button>
             </div>
-            <div style="margin-top:28px; color:var(--muted); font-size:14px">
-                <strong>Tips:</strong> klik <em>Buka Admin</em> untuk login sebagai staff dan coba fitur manajemen
-                course.
+
+            <!-- Tips Pembelajaran -->
+            <div class="tips">
+                <strong>Tips:</strong> Klik <em>Buka Admin</em> untuk login sebagai staff, atau klik
+                <em>Lihat Statistik</em> untuk melihat analitik pembelajaran.
             </div>
         </div>
+
+        <!-- Kolom Kanan: Sekilas Statistik (Dominan Biru Tua Kampus) -->
         <aside class="right" aria-label="Sekilas Statistik">
-            <div style="font-size:13px; color:var(--muted)">Sekilas Statistik</div>
-            <div class="stat">
+            <div class="right-header">
+                <span></span> SEKILAS STATISTIK
+            </div>
+
+            <div class="stat" style="border-left-color: var(--gold);">
+
                 <div>
                     <div class="num" id="stat-courses">-</div>
                     <small>Total Mata Kuliah</small>
                 </div>
             </div>
-            <div class="stat">
+
+            <div class="stat" style="border-left-color: var(--blue-sky);">
+
                 <div>
                     <div class="num" id="stat-users">-</div>
                     <small>Total Pengguna</small>
                 </div>
             </div>
-            <div class="stat">
+
+            <div class="stat" style="border-left-color: #34d399;">
+
                 <div>
                     <div class="num" id="stat-comments">-</div>
                     <small>Jumlah Komentar</small>
                 </div>
             </div>
-            <footer>e-LMS dibuat untuk pembelajaran yang mudah</footer>
+
+            <footer>e-LMS &middot; Dibuat untuk pembelajaran yang mudah</footer>
         </aside>
     </div>
+
+    <!-- Script Pengambilan Data Otomatis -->
     <script>
         (async function () {
             // 1. Ambil data Total Mata Kuliah dan Total Komentar
@@ -220,7 +419,7 @@
                 if (res.ok) {
                     const data = await res.json();
                     document.getElementById('stat-courses').textContent = data.course_count ?? '0';
-                    document.getElementById('stat-comments').textContent = data.comment_count ?? '0'; // <-- Mengisi angka komentar
+                    document.getElementById('stat-comments').textContent = data.comment_count ?? '0';
                 }
             } catch (e) {
                 console.error("Gagal memuat course-stat:", e);
