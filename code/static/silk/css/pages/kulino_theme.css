@@ -1,0 +1,520 @@
+:root {
+  --kulino-navy-deepest: #001226;
+  --kulino-navy-deep: #001a36;
+  --kulino-navy-main: #002752;
+  --kulino-navy-card: #002248;
+  --kulino-gold: #f59e0b;
+  --kulino-gold-light: #fbbf24;
+  --kulino-blue-sky: #38bdf8;
+  --kulino-text: #ffffff;
+  --kulino-text-muted: #cbd5e1;
+  --kulino-text-dim: #94a3b8;
+  --kulino-border: rgba(255, 255, 255, 0.1);
+  --kulino-panel: rgba(0, 34, 72, 0.94);
+  --kulino-shadow: 0 10px 30px rgba(0, 15, 35, 0.38);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  min-height: 100%;
+  background: var(--kulino-navy-deepest);
+}
+
+body {
+  min-height: 100vh;
+  background: radial-gradient(circle at 50% 20%, #002244 0%, var(--kulino-navy-deepest) 100%);
+  background-attachment: fixed;
+  color: var(--kulino-text);
+  font-family: "Plus Jakarta Sans", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-weight: 400;
+  -webkit-font-smoothing: antialiased;
+}
+
+#content {
+  min-height: 100vh;
+}
+
+#header {
+  align-items: center;
+  background: rgba(0, 26, 54, 0.96);
+  border-bottom: 2px solid var(--kulino-gold);
+  box-shadow: 0 8px 24px rgba(0, 10, 25, 0.38);
+  display: flex !important;
+  height: auto;
+  min-height: 58px;
+  padding: 0 12px;
+  position: relative;
+  z-index: 20;
+}
+
+#header .menu {
+  align-items: center;
+  display: flex !important;
+  flex-wrap: wrap;
+  gap: 8px;
+  height: auto;
+}
+
+#header .menu-item {
+  align-items: center;
+  background: var(--kulino-navy-card);
+  border: 1px solid var(--kulino-border);
+  border-radius: 10px;
+  color: var(--kulino-text-muted);
+  display: inline-flex !important;
+  font-size: 13px;
+  font-weight: 600;
+  height: 38px;
+  margin: 8px 0;
+  padding: 0 15px;
+  transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease, transform 0.2s ease;
+}
+
+#header .menu-item a,
+#header .menu-item a:visited {
+  color: inherit !important;
+  font-weight: inherit;
+}
+
+#header .selectable-menu-item:hover {
+  background: var(--kulino-navy-main);
+  border-color: var(--kulino-blue-sky);
+  color: var(--kulino-text) !important;
+  transform: translateY(-1px);
+}
+
+#header .selectable-menu-item:hover a {
+  color: inherit !important;
+}
+
+#header .menu-item-selected,
+#header .menu-item-selected:hover {
+  background: rgba(245, 158, 11, 0.15);
+  border-color: var(--kulino-gold);
+  color: var(--kulino-gold-light) !important;
+  font-weight: 700;
+}
+
+#header .menu-item-selected a,
+#header .menu-item-selected:hover a {
+  color: inherit !important;
+}
+
+#filter {
+  align-items: center;
+  display: flex !important;
+  height: auto;
+  margin-left: auto;
+  position: static;
+  right: auto;
+}
+
+#filter .menu-item {
+  margin-right: 0;
+}
+
+#filter label {
+  align-items: center;
+  color: var(--kulino-text-muted);
+  display: flex;
+  gap: 5px;
+  white-space: nowrap;
+}
+
+#filter-item {
+  filter: brightness(0) invert(1);
+}
+
+#data {
+  color: var(--kulino-text-muted);
+  padding: 26px 24px 48px;
+}
+
+#data > .container,
+#data > .wrapper,
+#data > .row-wrapper,
+#data > #table-div,
+#data > #pyprofile-div {
+  max-width: 1180px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.wrapper .inner,
+div.wrapper div#request-info,
+#pyprofile-div {
+  max-width: 1080px;
+  width: 100%;
+}
+
+h2,
+h3,
+h4,
+h5,
+#data h2,
+#data h3,
+#data h4,
+#data h5 {
+  background: transparent;
+  color: var(--kulino-text);
+  font-family: "Plus Jakarta Sans", system-ui, sans-serif;
+  font-weight: 700;
+}
+
+#data h2 {
+  border-bottom: 1px solid var(--kulino-border);
+  font-size: 24px;
+  margin-top: 0;
+  padding-bottom: 12px;
+}
+
+.description,
+.no-data {
+  color: var(--kulino-text-dim);
+  line-height: 1.6;
+}
+
+a,
+a:visited,
+#data a,
+#data a:visited {
+  color: #7dd3fc;
+}
+
+a:hover,
+#data a:hover {
+  color: var(--kulino-gold-light);
+}
+
+/* Summary metrics and request/profile cards */
+.summary-cell,
+.cell {
+  background: var(--kulino-panel);
+  border: 1px solid var(--kulino-border);
+  border-left: 4px solid var(--kulino-gold);
+  border-radius: 14px;
+  box-shadow: var(--kulino-shadow);
+  color: var(--kulino-text);
+  padding: 16px 18px;
+  transition: background-color 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+.summary-cell:hover,
+.cell:hover {
+  background: var(--kulino-navy-main);
+  border-color: var(--kulino-blue-sky);
+  border-left-color: var(--kulino-gold-light);
+  box-shadow: 0 12px 32px rgba(0, 15, 35, 0.5);
+  color: var(--kulino-text);
+  transform: translateY(-2px);
+}
+
+.summary-cell .desc,
+.cell .timestamp-div {
+  color: var(--kulino-text-muted);
+}
+
+.cell .meta,
+.row-wrapper .row .meta {
+  color: var(--kulino-gold-light);
+  font-weight: 600;
+}
+
+.cell .path-div,
+.cell .method-div,
+.row-wrapper .row .path-div,
+.row-wrapper .row .method-div {
+  color: var(--kulino-text);
+}
+
+/* Row view uses table-row markup, so borders are applied to its cells. */
+.row-wrapper {
+  border-collapse: separate;
+  border-spacing: 0 10px;
+  margin-top: 0;
+}
+
+.row-wrapper .row {
+  background: var(--kulino-panel);
+  color: var(--kulino-text);
+}
+
+.row-wrapper .row .col {
+  border-bottom: 1px solid var(--kulino-border);
+  border-top: 1px solid var(--kulino-border);
+}
+
+.row-wrapper .row .col:first-child {
+  border-left: 4px solid var(--kulino-gold);
+  border-radius: 12px 0 0 12px;
+}
+
+.row-wrapper .row .col:last-child {
+  border-right: 1px solid var(--kulino-border);
+  border-radius: 0 12px 12px 0;
+}
+
+.row-wrapper .row:hover {
+  background: var(--kulino-navy-main);
+  color: var(--kulino-text);
+}
+
+.row-wrapper .row:hover .col {
+  border-bottom-color: rgba(56, 189, 248, 0.5);
+  border-top-color: rgba(56, 189, 248, 0.5);
+}
+
+/* Filter drawer */
+.cbp-spmenu {
+  background: linear-gradient(180deg, var(--kulino-navy-card), var(--kulino-navy-deep));
+  border-left: 1px solid rgba(245, 158, 11, 0.5);
+  box-shadow: -14px 0 36px rgba(0, 10, 25, 0.55);
+  color: var(--kulino-text-muted);
+}
+
+.cbp-spmenu h3 {
+  background: var(--kulino-navy-deep);
+  border-bottom: 2px solid var(--kulino-gold);
+  color: var(--kulino-gold-light);
+  font-size: 22px;
+  font-weight: 800;
+  padding: 18px;
+}
+
+.cbp-spmenu h4 {
+  color: var(--kulino-text);
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.active-filter,
+.filter-section,
+#cbp-spmenu-s2 p {
+  color: var(--kulino-text-muted);
+}
+
+#cbp-spmenu-s2 button,
+.cleardb-form .btn {
+  background: linear-gradient(135deg, var(--kulino-gold), var(--kulino-gold-light));
+  border: 1px solid var(--kulino-gold-light);
+  border-radius: 9px;
+  box-shadow: 0 5px 16px rgba(245, 158, 11, 0.22);
+  color: var(--kulino-navy-deepest);
+  font-family: inherit;
+  font-weight: 800;
+  padding: 10px 18px;
+  transition: filter 0.2s ease, transform 0.2s ease;
+}
+
+#cbp-spmenu-s2 button:hover,
+.cleardb-form .btn:hover {
+  background: linear-gradient(135deg, var(--kulino-gold-light), #fde68a);
+  border-color: #fde68a;
+  color: var(--kulino-navy-deepest);
+  filter: brightness(1.04);
+  transform: translateY(-1px);
+}
+
+input[type="number"],
+input[type="text"],
+select {
+  background: rgba(0, 18, 38, 0.78);
+  border: 1px solid var(--kulino-border);
+  border-radius: 7px;
+  color: var(--kulino-text);
+  font-family: inherit;
+}
+
+input[type="number"]:focus,
+input[type="text"]:focus,
+select:focus {
+  border-color: var(--kulino-blue-sky);
+  box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.13);
+  outline: none;
+}
+
+select option {
+  background: var(--kulino-navy-deep);
+  color: var(--kulino-text);
+}
+
+.resizing-input input,
+.resizing-input span {
+  color: var(--kulino-text) !important;
+  font-family: "Plus Jakarta Sans", system-ui, sans-serif;
+}
+
+#filters {
+  color: var(--kulino-text-muted);
+  margin-bottom: 18px;
+}
+
+#filters input,
+#filters span {
+  color: var(--kulino-text) !important;
+}
+
+/* Detail tables and profiling output */
+#data table {
+  background: rgba(0, 34, 72, 0.78);
+  border: 1px solid var(--kulino-border);
+  border-radius: 12px;
+  color: var(--kulino-text-muted);
+  overflow: hidden;
+}
+
+#data th {
+  background: var(--kulino-navy-deep);
+  color: var(--kulino-gold-light);
+  font-weight: 700;
+}
+
+#data td {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+#data tr.data-row:hover,
+#data .headers tr:hover {
+  background: var(--kulino-navy-main);
+  color: var(--kulino-text);
+}
+
+.headers {
+  background: var(--kulino-navy-card);
+  color: var(--kulino-text-muted);
+  font-family: Fantasque, "Cascadia Mono", Consolas, monospace;
+}
+
+.heading {
+  border-bottom: 1px solid var(--kulino-border);
+  color: var(--kulino-gold-light);
+  font-weight: 700;
+}
+
+pre,
+code {
+  background: #06172b !important;
+  color: #e2e8f0;
+  font-family: Fantasque, "Cascadia Mono", Consolas, monospace;
+}
+
+pre {
+  border: 1px solid var(--kulino-border);
+  border-radius: 10px;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04);
+  line-height: 1.5;
+  padding: 14px !important;
+}
+
+code {
+  border-radius: 4px;
+  padding: 0.15em 0.35em !important;
+}
+
+pre code {
+  background: transparent !important;
+  padding: 0 !important;
+}
+
+.the-line {
+  background: rgba(245, 158, 11, 0.18);
+  border-left: 3px solid var(--kulino-gold);
+}
+
+#graph-div {
+  border: 4px solid var(--kulino-navy-card);
+  border-radius: 14px;
+  box-shadow: var(--kulino-shadow);
+  max-width: 100%;
+}
+
+#table-pagination div {
+  background: var(--kulino-navy-card);
+  border: 1px solid var(--kulino-border);
+  border-radius: 7px;
+  color: var(--kulino-text-muted);
+}
+
+.cleardb-form {
+  background: var(--kulino-panel);
+  border: 1px solid var(--kulino-border);
+  border-left: 4px solid var(--kulino-gold);
+  border-radius: 14px;
+  box-shadow: var(--kulino-shadow);
+  padding: 22px;
+}
+
+.cleardb-form label {
+  color: var(--kulino-text-muted);
+}
+
+.msg {
+  color: #bef264;
+}
+
+/* Keep Silk's five severity levels distinct and readable on navy cards. */
+.very-good-font-color {
+  color: #bef264;
+}
+
+.good-font-color {
+  color: #fde047;
+}
+
+.ok-font-color {
+  color: #fdba74;
+}
+
+.bad-font-color {
+  color: #fb923c;
+}
+
+.very-bad-font-color {
+  color: #fb7185;
+}
+
+::selection {
+  background: rgba(245, 158, 11, 0.35);
+  color: var(--kulino-text);
+}
+
+::-webkit-scrollbar {
+  height: 10px;
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--kulino-navy-deepest);
+}
+
+::-webkit-scrollbar-thumb {
+  background: #17466f;
+  border: 2px solid var(--kulino-navy-deepest);
+  border-radius: 999px;
+}
+
+@media (max-width: 900px) {
+  #header {
+    align-items: flex-start;
+    flex-direction: column;
+    padding: 6px 10px;
+  }
+
+  #filter {
+    margin-left: 0;
+    max-width: 100%;
+    overflow-x: auto;
+  }
+
+  #data {
+    padding: 20px 12px 36px;
+  }
+
+  .row-wrapper {
+    margin: 0;
+    overflow-x: auto;
+  }
+}

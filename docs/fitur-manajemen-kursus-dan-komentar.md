@@ -213,3 +213,11 @@ Hasil pencarian pada respons HTML:
 - View komentar menggunakan `select_related("member_id__user_id", "content_id__course_id")` agar data penulis, konten, dan kursus diambil melalui join, serta `order_by("-created_at")` agar komentar terbaru tampil lebih dahulu.
 - Halaman kursus memiliki empty state untuk kursus tanpa subscriber dan untuk kondisi tanpa kursus. Halaman komentar memiliki empty state `Belum ada komentar atau diskusi.` ketika belum ada data.
 - Kedua halaman hanya menampilkan data dan tidak menyediakan operasi tambah, ubah, atau hapus.
+
+## Kustomisasi Tampilan Silk (/silk/)
+
+Tampilan Django Silk memakai mekanisme override Django tanpa mengubah paket bawaan. Template `code/core/templates/silk/base/base.html` menyalin struktur `base.html` milik Silk, lalu menambahkan font Plus Jakarta Sans dan stylesheet tema Kulino. Override ini ditemukan lebih dahulu karena aplikasi `core` berada sebelum `silk` di `INSTALLED_APPS`.
+
+Tema navy/gold berada di `code/static/silk/css/pages/kulino_theme.css` dan didaftarkan melalui `STATICFILES_DIRS` pada settings. Stylesheet tersebut dimuat setelah stylesheet halaman Silk agar aturan tema dapat mengganti tampilan tanpa mengubah class atau ID yang dipakai JavaScript Silk.
+
+File di dalam `site-packages` tidak boleh diedit karena perubahan akan hilang ketika dependency atau container dibangun ulang. Jika versi Silk ditingkatkan dari 5.6.0, salinan template override perlu dibandingkan kembali dengan template upstream agar block dan struktur HTML tetap kompatibel.
