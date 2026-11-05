@@ -8,6 +8,7 @@ from django.template import loader
 from django.db.models import Max, Min, Avg, Count
 from django.core import serializers
 from .models import Course, CourseMember, CourseContent, Comment
+from silk.profiling.profiler import silk_profile
 
 
 def core(request):
@@ -34,7 +35,7 @@ def users(request):
     }
     return HttpResponse(template.render(context, request))
 
-
+@silk_profile(name='Profiling Statistik Kursus')
 def courseStat(request):
     courses = Course.objects.all()
     stats = courses.aggregate(
@@ -86,6 +87,7 @@ def courseStat(request):
     return JsonResponse(result, safe=False)
 
 
+@silk_profile(name='Profiling Statistik Pengguna')
 def userStatistics(request):
     non_admin_users = User.objects.filter(is_staff=False, is_superuser=False)
     total_non_admin_users = non_admin_users.count()
@@ -266,7 +268,7 @@ def delete_users_except(request, pk):
     )
 
 
-# query relational
+@silk_profile(name='Profiling Kursus')
 def allCourse(request):
     allCourse = Course.objects.all()
     result = []
@@ -289,6 +291,7 @@ def allCourse(request):
     return JsonResponse(result, safe=False)
 
 
+@silk_profile(name='Profiling Kursus Pengguna')
 def userCourses(request):
     user = User.objects.get(pk=3)
     courses = Course.objects.filter(teacher=user.id)
@@ -314,6 +317,7 @@ def userCourses(request):
     return JsonResponse(result, safe=False)
 
 
+@silk_profile(name='Profiling Statistik Pengguna')
 def courseMemberStat(request):
     courses = Course.objects.filter(description__contains="Python").annotate(
         member_num=Count("coursemember")
@@ -331,11 +335,13 @@ def courseMemberStat(request):
     return JsonResponse(result)
 
 
+@silk_profile(name='Profiling Daftar Konten Kursus')
 def content_list(request):
     courses = Course.objects.prefetch_related("coursecontent_set").all()
     return render(request, "core/konten_list.html", {"courses": courses})
 
 
+@silk_profile(name='Profiling Manajemen Kursus')
 def manajemen_kursus(request):
     courses = Course.objects.prefetch_related(
         "coursemember_set__user_id", "teacher"
@@ -343,6 +349,7 @@ def manajemen_kursus(request):
     return render(request, "core/manajemen_kursus.html", {"courses": courses})
 
 
+@silk_profile(name='Profiling Komentar Diskusi')
 def komentar_diskusi(request):
     comments = Comment.objects.select_related(
         "member_id__user_id", "content_id__course_id"
@@ -350,6 +357,7 @@ def komentar_diskusi(request):
     return render(request, "core/komentar_diskusi.html", {"comments": comments})
 
 
+@silk_profile(name='Profiling Detail Konten Kursus')
 def content_detail(request, pk):
     content = get_object_or_404(CourseContent, pk=pk)
     ext = content.file_extension
@@ -369,6 +377,7 @@ def content_detail(request, pk):
     return render(request, "core/konten_detail.html", context)
 
 
+@silk_profile(name='Profiling Download Konten')
 def download_content_file(request, pk):
     content = get_object_or_404(CourseContent, pk=pk)
     if not content.file_attachment:
